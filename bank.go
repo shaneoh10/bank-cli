@@ -14,17 +14,20 @@ func main() {
 		fmt.Print("Enter your choice: ")
 		fmt.Scanln(&choice)
 
-		if choice == 1 {
+		switch choice {
+		case 1:
 			checkBalance(accountBalance)
-		} else if choice == 2 {
+		case 2:
 			accountBalance = depositMoney(accountBalance)
-		} else if choice == 3 {
+		case 3:
 			accountBalance = withdrawMoney(accountBalance)
-		} else {
-			break
+		case 4:
+			fmt.Println("Thank you for using Go Bank. Goodbye!")
+			return
+		default:
+			fmt.Println("Invalid choice. Please try again.")
 		}
 	}
-	fmt.Println("Thank you for using Go Bank. Goodbye!")
 }
 
 func displayOptions() {
