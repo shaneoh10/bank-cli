@@ -1,11 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/shaneoh10/bank-cli/utils"
+)
 
 const accountBalanceFile = "balance.txt"
 
 func main() {
-	var accountBalance, err = readBalanceFromFile()
+	var accountBalance, err = utils.ReadFloatFromFile(accountBalanceFile)
 
 	if err != nil {
 		fmt.Println("No existing balance found. Starting with a balance of 0.00")
@@ -26,10 +30,10 @@ func main() {
 			checkBalance(accountBalance)
 		case 2:
 			accountBalance = depositMoney(accountBalance)
-			writeBalanceToFile(accountBalance)
+			utils.WriteFloatToFile(accountBalanceFile, accountBalance)
 		case 3:
 			accountBalance = withdrawMoney(accountBalance)
-			writeBalanceToFile(accountBalance)
+			utils.WriteFloatToFile(accountBalanceFile, accountBalance)
 		case 4:
 			fmt.Println("Thank you for using Go Bank. Goodbye!")
 			return
